@@ -1,0 +1,30 @@
+services:
+  postgres:
+    container_name: postgres_c2
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: demo_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgres/data
+    networks:
+      - docker_demo_network
+  spring-boot-app:
+    container_name: docker_demo_2
+    image: docker_demo
+    ports:
+      - "8088:8080"
+    networks:
+      - docker_demo_network
+    depends_on:
+      - postgres
+
+volumes:
+  postgres:
+
+networks:
+  docker_demo_network:
+    driver: bridge

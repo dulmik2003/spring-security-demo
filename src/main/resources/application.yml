@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres_c2:5432/demo_db
+    password: 12345
+    username: username
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: postgresql
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+application:
+  security:
+    jwt:
+      secret-key: 454f524d58567251787a366b356e65706d534d3453347552566855756b466273
+      expiration: 3600000 #1 hour        # 120000 #2 min
+      refresh-token:
+        expiration: 3600000 #1 hour
